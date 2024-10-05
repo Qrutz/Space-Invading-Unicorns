@@ -28,3 +28,26 @@ secrets.txt
 # Ignore operating system files
 .DS_Store
 Thumbs.db
+
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
+
+# If you are using PyCharm # 
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Python # 
+*.py[cod] 
+*$py.class
+
+# pyenv 
+.python-version

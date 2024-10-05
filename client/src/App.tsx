@@ -1,30 +1,39 @@
 
+import { useRef, useState } from 'react'
 import './App.css'
-import { BackgroundBeamsWithCollisionDemo } from './components/BannerDemo'
-import { FilterComponent } from './components/Filter'
-import { GlobeDemo } from './components/GlobeDemo'
+import { BackgroundBeamsWithCollisionDemo, LandingPage } from './components/BannerDemo'
+
 import GlobeComponent from './components/GlobeV2'
-import { AnimatedModalDemo } from './components/SearchButton'
+
+
 
 
 function App() {
+  const [response, setResponse] = useState(null); // Moved response state here
+  const globeRef = useRef(null); // Ref for GlobeComponent
+
+  const scrollToGlobe = () => {
+    if (globeRef.current) {
+      // Ensure smooth scrolling to the globe element
+      globeRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+  const handleResponse = (data) => {
+    setResponse(data); // Set the response (coordinates)
+
+    // Scroll to the globe after a small delay to ensure it's rendered
+    setTimeout(scrollToGlobe, 300); // Adjust the timeout if necessary
+  };
 
   return (
 
     <>
-      <BackgroundBeamsWithCollisionDemo />
-      <div className="flex justify-evenly w-full flex-wrap">
-        <FilterComponent title="Temperature" minLabel="< -20C" maxLabel="> 35C" minRange={0} maxRange={100} initialRange={50} />
-        <FilterComponent title="Pollution" minLabel="Low" maxLabel="High" minRange={0} maxRange={100} initialRange={50} />
-        <FilterComponent title="Population" minLabel="500" maxLabel="1.5 mil" minRange={0} maxRange={100} initialRange={50} />
-        <FilterComponent title="Tree Coverage" minLabel="0 %" maxLabel="100 %" minRange={0} maxRange={100} initialRange={50} />
+      <LandingPage setResponse={handleResponse} />
+
+
+      <div ref={globeRef}>
+        {response && <GlobeComponent coordinates={response?.coordinates} />}
       </div>
-
-      {/* <AnimatedModalDemo /> */}
-
-
-
-      <GlobeComponent />
     </>
   )
 }

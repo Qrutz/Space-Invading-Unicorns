@@ -5,7 +5,7 @@ import { Color, Scene, Fog, PerspectiveCamera, Vector3 } from "three";
 import ThreeGlobe from "three-globe";
 import { useThree, Object3DNode, Canvas, extend } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import countries from "../../../data/globe.json"
+import countries from "../../data/globe.json"
 declare module "@react-three/fiber" {
     interface ThreeElements {
         threeGlobe: Object3DNode<ThreeGlobe, typeof ThreeGlobe>;
@@ -217,7 +217,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
             );
 
             globeRef.current.ringsData(
-                globeData.filter((d, i) => numbersOfRings.includes(i))
+                globeData.filter((_d, i) => numbersOfRings.includes(i))
             );
         }, 2000);
 
@@ -285,7 +285,7 @@ export function World(props: WorldProps) {
 export function hexToRgb(hex: string) {
 
     const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, function (m, r, g, b) {
+    hex = hex.replace(shorthandRegex, function (_m, r, g, b) {
         return r + r + g + g + b + b;
     });
 

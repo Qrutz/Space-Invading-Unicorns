@@ -1,4 +1,3 @@
-import React from "react";
 import { BackgroundBeamsWithCollision } from "./Banner";
 import img from "../assets/spaceinvadingunicorns.png";
 

@@ -1,7 +1,7 @@
 
 import { useRef, useState } from 'react'
 import './App.css'
-import { BackgroundBeamsWithCollisionDemo, LandingPage } from './components/BannerDemo'
+import { LandingPage } from './components/BannerDemo'
 
 import GlobeComponent from './components/GlobeV2'
 

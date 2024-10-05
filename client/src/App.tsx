@@ -1,15 +1,16 @@
 
 import './App.css'
-import MapComponent from './components/Map'
+import { GlobeDemo } from './components/GlobeDemo'
+
 
 function App() {
 
   return (
 
-    <div className="">
-      <h1 className='text-red-300 text-4xl'>Leaflet Map</h1>
-      <MapComponent />
-    </div>
+
+
+    <GlobeDemo />
+
   )
 }
 

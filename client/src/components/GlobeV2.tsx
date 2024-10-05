@@ -7,6 +7,13 @@ const GlobeComponent = ({ coordinates }) => {
     const globeRef = useRef();
     const [showLeafletMap, setShowLeafletMap] = useState(false); // To switch to Leaflet map
     const [coords, setCoords] = useState({ lat: 51.1657, lng: 10.4515 }); // Default to Germany coordinates
+    const countryDetails = {
+        country: "Sweden", // Hardcoded country name
+        avgTemperature: "-5°C to 25°C", // Hardcoded average temperature
+        avgPollution: "Low", // Hardcoded average pollution level
+        population: "10 million", // Hardcoded population
+        treeCoverage: "69%" // Hardcoded tree coverage
+    };
 
     // Effect to trigger zoom when coordinates change
     useEffect(() => {
@@ -22,12 +29,17 @@ const GlobeComponent = ({ coordinates }) => {
         const altitude = 0.01; // Zoom in very close
 
         controls.autoRotate = false; // Stop auto-rotation if enabled
-        globeRef.current.pointOfView({ lat, lng, altitude }, 2000); // Smooth transition to new coordinates
+        globeRef.current.pointOfView({ lat, lng, altitude }, 6000); // Smooth transition to new coordinates
 
         // Set a timeout to switch to Leaflet map when zoomed in sufficiently
         setTimeout(() => {
             setShowLeafletMap(true); // Trigger map switch
-        }, 2500); // Adjust timing to match zoom duration
+        }, 6000); // Adjust timing to match zoom duration
+    };
+
+    // Function to refresh the page (Try Again button)
+    const refreshPage = () => {
+        window.location.reload(); // Simple page refresh
     };
 
     return (
@@ -46,16 +58,50 @@ const GlobeComponent = ({ coordinates }) => {
                         </div>
                     ) : (
                         // Leaflet Map appears after zoom-in
-                        <MapContainer
-                            center={[coords.lat, coords.lng]}
-                            zoom={13}
-                            style={{ height: '100%', width: '100%' }}
-                        >
-                            <TileLayer
-                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
-                            <Marker position={[coords.lat, coords.lng]} />
-                        </MapContainer>
+                        <div className="flex justify-center items-center h-screen bg-purple-600 p-10 rounded-lg space-x-8">
+                            {/* Circular map container */}
+                            <div className="relative w-96 h-96 rounded-full overflow-hidden shadow-xl border-4 border-blue-400">
+                                {/* Leaflet Map with a dark theme */}
+                                <MapContainer
+                                    center={[coords.lat, coords.lng]}
+                                    zoom={13}
+                                    className="h-full w-full rounded-full"
+                                >
+                                    <TileLayer
+                                        url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+                                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
+                                    <Marker position={[coords.lat, coords.lng]} />
+                                </MapContainer>
+                            </div>
+
+                            {/* Right side content */}
+                            <div className="text-white space-y-4 max-w-md">
+                                <h2 className="text-2xl font-bold font-pixel text-center mb-4">
+                                    The most suitable country according to your preferences is {countryDetails.country}!
+                                </h2>
+
+                                <div className="space-y-2 text-lg">
+                                    <p>Average temperature: {countryDetails.avgTemperature}</p>
+                                    <p>Average pollution level: {countryDetails.avgPollution}</p>
+                                    <p>Population: {countryDetails.population}</p>
+                                    <p>Tree coverage: {countryDetails.treeCoverage}</p>
+                                </div>
+
+                                <p className="mt-6 text-lg font-bold">
+                                    Explore the map to see the visualisation of the filters!
+                                </p>
+
+                                {/* Try Again button */}
+                                <div className="flex justify-center mt-6">
+                                    <button
+                                        onClick={refreshPage} // Calls refreshPage when clicked
+                                        className="bg-white text-purple-600 py-2 px-6 rounded-full font-bold text-lg hover:bg-gray-200 transition"
+                                    >
+                                        TRY AGAIN
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     )}
                 </div>
             </div>

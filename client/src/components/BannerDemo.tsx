@@ -9,10 +9,10 @@ function simulateApiResponse(data) {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve({
-                country: "Germany",
+                country: "Sweden",
                 coordinates: {
-                    lat: 51.1657,
-                    lng: 10.4515,
+                    lat: 57.7089,
+                    lng: 11.9746,
                 },
             });
         }, 2000);

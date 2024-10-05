@@ -1,6 +1,7 @@
 from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
+import requests
 from urllib.request import urlopen
 import json
 
@@ -34,21 +35,34 @@ def getUserParametersAndCalculate():
 
 
 def getplace(lat, lon):
-    url = f"http://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&sensor=false&key=AIzaSyCERxB4t2EdfYMF_U2h-NcAd40BoP4NTpI"
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng=57.721035,12.939819&sensor=false&key=AIzaSyCERxB4t2EdfYMF_U2h-NcAd40BoP4NTpI"
     try:
-        v = urlopen(url).read()
-        j = json.loads(v)
-        components = j['results'][0]['formatted_address']
+        # Make the request
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+
+        # Ensure the response contains results
+        if not data.get('results'):
+            print(f"No results found for coordinates: {lat}, {lon}")
+            return None
+
+        # Extract address components
+        components = data['results'][0]['address_components']
         country = town = None
-        print("Hello")
+
+        # Iterate over components to find country and town
         for c in components:
             if "country" in c['types']:
-                print("Hello")
                 country = c['long_name']
-            if "postal_town" in c['types']:
-                print("Yellow")
+            if "locality" in c['types'] or "postal_town" in c['types']:
                 town = c['long_name']
+
         return town, country
-    except Exception as e:
-        print(f"Error occurred: {e}")
-        return None
+
+    except requests.RequestException as e:
+        print(f"Request failed: {e}")
+    except (IndexError, KeyError) as e:
+        print(f"Error extracting data: {e}")
+
+    return None

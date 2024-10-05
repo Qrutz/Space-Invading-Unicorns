@@ -3,6 +3,7 @@ import './App.css'
 import { BackgroundBeamsWithCollisionDemo } from './components/BannerDemo'
 import { FilterComponent } from './components/Filter'
 import { GlobeDemo } from './components/GlobeDemo'
+import GlobeComponent from './components/GlobeV2'
 import { AnimatedModalDemo } from './components/SearchButton'
 
 
@@ -20,9 +21,10 @@ function App() {
       </div>
 
       {/* <AnimatedModalDemo /> */}
-      <button>Scroll to globe thing</button>
 
-      <GlobeDemo />
+
+
+      <GlobeComponent />
     </>
   )
 }

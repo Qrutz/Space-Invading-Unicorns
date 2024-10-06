@@ -36,15 +36,18 @@ Subsequently, the standardized data was further refined into a concise dataset u
 
 ### Running the Backend
 To run the backend, run the following commands and leave the terminal running:
+(Make sure you are using a virtual env)
 ```
 cd backend
-python
+pip install "fastapi[standard]"
+fastapi dev main.py
 ```
 
 ### Running the Frontend
 To run the frontend, run the following commands and leave the terminal running:
 ```
 cd client
+npm install
 npm run dev
 ```
 

@@ -42,7 +42,7 @@ export function LandingPage({ setResponse }) {
 
     return (
         <BackgroundBeamsWithCollision>
-            <div className="flex flex-col items-center justify-center h-screen space-y-6 px-4">
+            <div className="flex flex-col items-center justify-center h-screen space-y-6 px-4 font-Fred">
                 <img src={img} alt="Space Invading Unicorns" className="w-32 h-32 rounded-full md:w-48 md:h-48 lg:w-64 lg:h-64 mx-auto" />
                 <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-center text-white font-pixel">
                     What is the most suitable <br /> country for you to live in?

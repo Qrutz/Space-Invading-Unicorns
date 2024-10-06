@@ -75,8 +75,8 @@ const GlobeComponent = ({ coordinates }) => {
                             </div>
 
                             {/* Right side content */}
-                            <div className="text-white space-y-8 max-w-md">
-                                <h2 className="text-3xl font-bold font-pixel text-left mb-8">
+                            <div className="text-white space-y-8 max-w-md font-Fred">
+                                <h2 className="text-3xl font-semibold font-pixel text-left mb-8">
                                     The most suitable country according to your preferences is {countryDetails.country}!
                                 </h2>
 
@@ -88,7 +88,7 @@ const GlobeComponent = ({ coordinates }) => {
                                     <p>Tree coverage: {countryDetails.treeCoverage}</p>
                                 </div>
 
-                                <p className="mt-6 text-lg font-bold">
+                                <p className="mt-6 text-lg font-semibold">
                                     Explore the map to see the visualisation of the filters!
                                 </p>
 
@@ -96,9 +96,9 @@ const GlobeComponent = ({ coordinates }) => {
                                 <div className="flex justify-left mt-6">
                                     <button
                                         onClick={refreshPage} // Calls refreshPage when clicked
-                                        className="bg-white text-purple-600 py-2 px-6 rounded-full font-bold text-lg hover:bg-gray-200 transition"
+                                        className="bg-white text-purple-600 py-2 px-6 rounded-full text-lg hover:bg-gray-200 transition"
                                     >
-                                        TRY AGAIN
+                                        Try again
                                     </button>
                                 </div>
                             </div>

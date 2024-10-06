@@ -63,7 +63,7 @@ export function LandingPage({ setResponse }) {
                     onClick={handleFormSubmit}
                     disabled={loading}
                 >
-                    {loading ? "Finding Place..." : "FIND A PLACE"}
+                    {loading ? "Finding place..." : "FIND A PLACE"}
                 </button>
             </div>
         </BackgroundBeamsWithCollision>

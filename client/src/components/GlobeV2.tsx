@@ -45,7 +45,7 @@ const GlobeComponent = ({ coordinates }) => {
     return (
         <>
             <div style={{ width: '100%', height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
-                <div style={{ width: '100%', height: '80vh', position: 'relative' }}>
+                <div style={{ width: '100%', height: '100vh', position: 'relative' }}>
                     {!showLeafletMap ? (
                         <div style={{ width: '100%', height: '100%' }}>
                             {/* Globe Component */}
@@ -83,7 +83,7 @@ const GlobeComponent = ({ coordinates }) => {
                                 <div className="space-y-2 text-lg">
                                     <p>Average temperature: {countryDetails.avgTemperature}</p>
                                     <p>Average pollution level: {countryDetails.avgPollution}</p>
-                                    <p>Population: {countryDetails.population}</p>
+                                    <p>Population density: {countryDetails.population}</p>
                                     <p>Tree coverage: {countryDetails.treeCoverage}</p>
                                 </div>
 

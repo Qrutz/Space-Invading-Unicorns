@@ -10,7 +10,7 @@ To do this we built a web app using FastAPI and a machine learning algorithm in 
 ### Clone the repository
 Clone the repository by running the following command in the terminal inside the desired folder:
 ```
-git clone
+git clone https://github.com/Qrutz/Space-Invading-Unicorns.git
 ```
 
 ### Install npm
@@ -45,12 +45,12 @@ After running both the backend and the frontend you can use the project as a web
 - [Vegetation data](https://lpdaac.usgs.gov/products/vcf5kyrv001/) _ie. Tree Coverage_ (Retrieved 5/10/2024)
 - [Population Density data](https://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-density-rev11) (Retrieved 5/10/2024)
 
-# Diagrams
+## Diagrams
 
-## Sequence Diagram
+### Sequence Diagram
 ![Sequence Diagram](https://i.imgur.com/zaDF2Ef.png)
 
-## Component Diagram
+### Component Diagram
 ![Component Diagram](https://i.imgur.com/8qGEYkk.jpeg)
 
 ## Authors and Contributions

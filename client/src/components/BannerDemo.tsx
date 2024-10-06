@@ -51,10 +51,11 @@ export function LandingPage({ setResponse }) {
                     Add your preferences and find out!
                 </p>
 
-                <div className="flex flex-wrap justify-center gap-4 py-10 w-full">
-                    <FilterComponent title="Temperature" minLabel="< -20C" maxLabel="> 35C" minRange={0} maxRange={100} initialRange={temperature} onChange={setTemperature} />
+                <div className="flex flex-wrap justify-center gap-2 py-10 w-full">
+                    <FilterComponent title="Summer temperature" minLabel="< 0C" maxLabel="> 35C" minRange={0} maxRange={100} initialRange={temperature} onChange={setTemperature} />
+                    <FilterComponent title="Winter temperature" minLabel="-25C" maxLabel="20C" minRange={0} maxRange={100} initialRange={temperature} onChange={setTemperature} />
                     <FilterComponent title="Pollution" minLabel="Low" maxLabel="High" minRange={0} maxRange={100} initialRange={pollution} onChange={setPollution} />
-                    <FilterComponent title="Population" minLabel="500" maxLabel="1.5 mil" minRange={0} maxRange={100} initialRange={population} onChange={setPopulation} />
+                    <FilterComponent title="Population density" minLabel="500" maxLabel="1.5 mil" minRange={0} maxRange={100} initialRange={population} onChange={setPopulation} />
                     <FilterComponent title="Tree Coverage" minLabel="0 %" maxLabel="100 %" minRange={0} maxRange={100} initialRange={treeCoverage} onChange={setTreeCoverage} />
                 </div>
 
@@ -63,7 +64,7 @@ export function LandingPage({ setResponse }) {
                     onClick={handleFormSubmit}
                     disabled={loading}
                 >
-                    {loading ? "Finding Place..." : "FIND A PLACE"}
+                    {loading ? "Searching..." : "Find a place!"}
                 </button>
             </div>
         </BackgroundBeamsWithCollision>

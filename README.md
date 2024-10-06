@@ -45,6 +45,12 @@ After running both the backend and the frontend you can use the project as a web
 - [Vegetation data](https://lpdaac.usgs.gov/products/vcf5kyrv001/) _ie. Tree Coverage_ (Retrieved 5/10/2024)
 - [Population Density data](https://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-density-rev11) (Retrieved 5/10/2024)
 
+## Diagrams
+
+![Sequence Diagram](https://i.imgur.com/zaDF2Ef.png)
+
+![Component Diagram](https://i.imgur.com/8qGEYkk.jpeg)
+
 ## Authors and Contributions
 ### Backend Team
 - Alexander Helsing

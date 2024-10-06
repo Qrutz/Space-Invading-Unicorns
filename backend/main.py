@@ -53,7 +53,6 @@ def getUserParametersAndCalculate(userInput: UserInput):
 
     foundCoordinates, foundFeatures = bestLocation(userPriorities, userData, data)
 
-    # Hardcoded data for example
     longitude, latitude = foundCoordinates
     temperature, treeCoverage, population, pollution = foundFeatures
 

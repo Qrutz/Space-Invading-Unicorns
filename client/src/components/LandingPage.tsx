@@ -80,17 +80,7 @@ export function LandingPage({ setResponse }) {
 
                 <div className="flex flex-wrap justify-center gap-2 py-10 w-full">
                     <FilterComponent
-                        title="Summer temperature"
-                        minLabel="< 0C"
-                        maxLabel="> 35C"
-                        minRange={0}
-                        maxRange={100}
-                        initialRange={temperature}
-                        onRangeChange={setTemperature}
-                        onPriorityChange={setTemperaturePriority}
-                    />
-                    <FilterComponent
-                        title="Winter temperature"
+                        title="Temperature"
                         minLabel="-25C"
                         maxLabel="20C"
                         minRange={0}

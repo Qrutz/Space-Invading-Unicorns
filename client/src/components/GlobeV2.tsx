@@ -3,10 +3,11 @@ import Globe from 'react-globe.gl';
 import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Leaflet styles
 
-const GlobeComponent = ({ coordinates }) => {
+const GlobeComponent = ({ coordinates, alternatives }) => {
     const globeRef = useRef();
     const [showLeafletMap, setShowLeafletMap] = useState(false); // To switch to Leaflet map
     const [coords, setCoords] = useState({ lat: 51.1657, lng: 10.4515 }); // Default to Germany coordinates
+    const [selectedPlace, setSelectedPlace] = useState(coordinates);
     const countryDetails = {
         country: "Sweden", // Hardcoded country name
         avgTemperature: "-5°C to 25°C", // Hardcoded average temperature
@@ -17,11 +18,11 @@ const GlobeComponent = ({ coordinates }) => {
 
     // Effect to trigger zoom when coordinates change
     useEffect(() => {
-        if (coordinates) {
-            setCoords(coordinates); // Update local coords
-            zoomToCoordinates(coordinates.lat, coordinates.lng); // Trigger zoom
+        if (selectedPlace) {
+            setCoords(selectedPlace); // Update local coords
+            zoomToCoordinates(selectedPlace.lat, selectedPlace.lng); // Trigger zoom
         }
-    }, [coordinates]);
+    }, [selectedPlace]);
 
     // Function to zoom into given coordinates on the globe
     const zoomToCoordinates = (lat, lng) => {
@@ -103,6 +104,24 @@ const GlobeComponent = ({ coordinates }) => {
                                     >
                                         Try again
                                     </button>
+                                </div>
+
+                                <div className="mt-8">
+                                    <h3 className="text-xl font-semibold">Alternative Places:</h3>
+                                    {alternatives && alternatives.length > 0 && (
+                                        <ul>
+                                            {alternatives.map((alt, index) => (
+                                                <li key={index} className="mt-2">
+                                                    <button
+                                                        onClick={() => setSelectedPlace(alt)}
+                                                        className="bg-white text-purple-600 py-1 px-4 rounded-full text-lg hover:bg-gray-200 transition"
+                                                    >
+                                                        {alt.city}, {alt.country}
+                                                    </button>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
                                 </div>
                             </div>
                         </div>

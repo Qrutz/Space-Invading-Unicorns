@@ -29,11 +29,22 @@ def getUserParametersAndCalculate(userInput: UserInput):
     # Request to Google Maps API to get country and city
     print(userInput)
     userAnswer = getplace(longitude, latitude)
-    if userAnswer:
+    userAnswer2 = getplace2(longitude, latitude)
+    userAnswer3 = getplace3(longitude, latitude)
+
+    # Check if all responses are valid
+    if userAnswer and userAnswer2 and userAnswer3:
+        # Unpack the results
         town, country = userAnswer
+        town2, country2 = userAnswer2
+        town3, country3 = userAnswer3
         return {
             "City": town,
             "Country": country,
+            "City2": town2,
+            "Country2": country2,
+            "City3": town3,
+            "Country3": country3,
             "Latitude": latitude,
             "Longitude": longitude,
         }

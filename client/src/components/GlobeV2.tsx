@@ -28,6 +28,9 @@ const GlobeComponent = ({ coordinates }) => {
         const controls = globeRef.current.controls();
         const altitude = 0.01; // Zoom in very close
 
+        // print coords
+        console.log(lat, lng);
+
         controls.autoRotate = false; // Stop auto-rotation if enabled
         globeRef.current.pointOfView({ lat, lng, altitude }, 6000); // Smooth transition to new coordinates
 

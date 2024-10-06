@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BackgroundBeamsWithCollision } from "../components/Banner";
 import img from "../assets/spaceinvadingunicorns.png";
 import { FilterComponent } from "./Filter";
+import axios from "axios";
 
 // Simulated API response function
 function simulateApiResponse(data) {
@@ -21,24 +22,68 @@ function simulateApiResponse(data) {
 
 export function LandingPage({ setResponse }) {
     const [temperature, setTemperature] = useState(50);
+    const [temperaturePriority, setTemperaturePriority] = useState(50);
     const [pollution, setPollution] = useState(50);
+    const [pollutionPriority, setPollutionPriority] = useState(50);
     const [population, setPopulation] = useState(50);
+    const [populationPriority, setPopulationPriority] = useState(50);
     const [treeCoverage, setTreeCoverage] = useState(50);
+    const [treeCoveragePriority, setTreeCoveragePriority] = useState(50);
     const [loading, setLoading] = useState(false);
 
     const handleFormSubmit = async () => {
         const formData = {
             temperature,
+            temperaturePriority,
             pollution,
+            pollutionPriority,
             population,
+            populationPriority,
             treeCoverage,
+            treeCoveragePriority,
         };
 
         setLoading(true);
-        const apiResponse = await simulateApiResponse(formData);
-        setResponse(apiResponse); // Set the response in the parent via prop
+        // const apiResponse = await simulateApiResponse(formData);
+
+        //  use this as mockup for now
+        // {
+        //     "temperature": 23,
+        //     "temperaturePriority": 3,
+        //     "population": 50000,
+        //     "populationPriority": 2,
+        //     "treeCoverage": 35,
+        //     "treeCoveragePriority": 4,
+        //     "polutionLevels": 15,
+        //     "polutionLevelsPriority": 5
+        //   }
+        const fake = {
+            "temperature": 23,
+            "temperaturePriority": 3,
+            "population": 50000,
+            "populationPriority": 2,
+            "treeCoverage": 35,
+            "treeCoveragePriority": 4,
+            "polutionLevels": 15,
+            "polutionLevelsPriority": 5
+        }
+
+        // use axios to post with the form data
+        const apiResponse = await axios.post('/api/calculate', fake);
+        console.log(apiResponse);
+        const coordinates = {
+            lat: apiResponse.data.Longitude,
+            lng: apiResponse.data.Latitude,
+        };
+        const country = apiResponse.data.Country;
+        setResponse({ country, coordinates });
+
+
+        // convert city to coordinates
         setLoading(false);
     };
+
+
 
     return (
         <BackgroundBeamsWithCollision>

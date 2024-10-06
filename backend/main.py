@@ -1,28 +1,31 @@
-from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
 import requests
-from urllib.request import urlopen
-import json
 
 app = FastAPI()
 
 class UserInput(BaseModel):
     temperature: int
+    temperaturePriority: int
     population: int
+    populationPriority: int
     treeCoverage: int
+    treeCoveragePriority: int
+    polutionLevels: int
+    polutionLevelsPriority: int
+
 
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+@app.post("/calculate")
+def getUserParametersAndCalculate(userInput: UserInput):
+    # Do ML model algo thingy
 
-@app.get("/calculate")
-def getUserParametersAndCalculate():
+    print(userInput)
+
     userAnswer = getplace(57.721035, 12.939819)
     if userAnswer:
         town, country = userAnswer
@@ -35,7 +38,7 @@ def getUserParametersAndCalculate():
 
 
 def getplace(lat, lon):
-    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng=57.721035,12.939819&sensor=false&key=AIzaSyCERxB4t2EdfYMF_U2h-NcAd40BoP4NTpI"
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&sensor=false&key=AIzaSyCERxB4t2EdfYMF_U2h-NcAd40BoP4NTpI"
     try:
         # Make the request
         response = requests.get(url)

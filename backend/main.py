@@ -1,11 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import requests
-<<<<<<< Updated upstream
-=======
-from urllib.request import urlopen
-import json
->>>>>>> Stashed changes
 
 app = FastAPI()
 
@@ -32,15 +27,12 @@ def getUserParametersAndCalculate(userInput: UserInput):
 
     print(userInput)
 
-<<<<<<< Updated upstream
-=======
 @app.post("/calculate")
 def getUserParametersAndCalculate(userInput: UserInput):
     # Do ML model algo thingy
 
     print(userInput)
 
->>>>>>> Stashed changes
     userAnswer = getplace(57.721035, 12.939819)
     if userAnswer:
         town, country = userAnswer
@@ -141,8 +133,4 @@ def getplace(lat, lon):
     except (IndexError, KeyError) as e:
         print(f"Error extracting data: {e}")
 
-<<<<<<< Updated upstream
     return None
-=======
-    return None
->>>>>>> Stashed changes

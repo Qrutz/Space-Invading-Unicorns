@@ -15,6 +15,16 @@ function simulateApiResponse(data) {
                     lat: 57.7089,
                     lng: 11.9746,
                 },
+                country2: "Norway",
+                coordinates2: {
+                    lat: 60.472,
+                    lng: 8.4689,
+                },
+                country3: "Finland",
+                coordinates3: {
+                    lat: 61.9241,
+                    lng: 25.7482,
+                },
             });
         }, 2000);
     });
@@ -50,15 +60,29 @@ export function LandingPage({ setResponse }) {
 
         const apiResponse = await axios.post('/api/calculate', formData);
         console.log(apiResponse);
-        const coordinates = {
-            lat: apiResponse.data.Longitude,
-            lng: apiResponse.data.Latitude,
+        const targetPlace = {
+            lat: apiResponse.data.Latitude,
+            lng: apiResponse.data.Longitude,
+            city: apiResponse.data.City,
+            country: apiResponse.data.Country,
         };
-        const country = apiResponse.data.Country;
-        setResponse({ country, coordinates });
+        const alternative1 = {
+            city: apiResponse.data.City2,
+            country: apiResponse.data.Country2,
+        };
+        const alternative2 = {
+            city: apiResponse.data.City3,
+            country: apiResponse.data.Country3,
+        };
+
+        setResponse({
+            targetPlace,
+            alternatives: [alternative1, alternative2],
+        });
 
         setLoading(false);
-    };
+     
+};
 
 
 

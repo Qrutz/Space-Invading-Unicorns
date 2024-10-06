@@ -30,9 +30,9 @@ export function FilterComponent({
     };
 
     return (
-        <div className="flex flex-col items-center justify-center space-y-4 p-4 sm:p-6 rounded-3xl bg-white shadow-lg w-full sm:w-80 relative">
+        <div className="flex flex-col items-center justify-center space-y-4 p-4 sm:p-6 rounded-3xl bg-white shadow-lg w-full sm:w-80 relative font-Fred">
             {/* Header */}
-            <div className="bg-purple-700 text-white text-sm sm:text-lg font-bold px-6 sm:px-8 py-1.5 sm:py-2 rounded-full absolute -top-6 sm:-top-8">
+            <div className="bg-purple-700 text-white text-sm sm:text-lg font-semi px-6 sm:px-8 py-1.5 sm:py-2 rounded-full absolute -top-6 sm:-top-8">
                 {title.toUpperCase()}
             </div>
 
@@ -54,7 +54,7 @@ export function FilterComponent({
 
             {/* Priority */}
             <div className="flex flex-col items-center space-y-2">
-                <p className="text-xs sm:text-sm font-semibold text-gray-700">
+                <p className="text-xs sm:text-sm text-gray-700">
                     Priority
                     <button
                         onMouseEnter={() => showPriorityInfo(true)}

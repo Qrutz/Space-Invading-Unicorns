@@ -24,7 +24,7 @@ Make sure you have Python installed before the next step!
 
 ### Data Preprocessing
 
-Install the data environment under `backend\data.yml`.
+Install and activate the data python environment defined under `backend\data.yml`.
 
 We utilized datasets provided by NASA (details in the [sources below](#data-sources)) and standardized them using the script located at `backend/StandardizeDatasets.py`.
 

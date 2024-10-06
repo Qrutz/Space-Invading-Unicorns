@@ -21,7 +21,7 @@ function simulateApiResponse(data) {
 }
 
 export function LandingPage({ setResponse }) {
-    const [temperature, setTemperature] = useState(50);
+    const [temperature, setTemperature] = useState(10);
     const [temperaturePriority, setTemperaturePriority] = useState(1);
     const [pollution, setPollution] = useState(50);
     const [pollutionPriority, setPollutionPriority] = useState(1);
@@ -34,15 +34,16 @@ export function LandingPage({ setResponse }) {
 
     const handleFormSubmit = async () => {
         const formData = {
-            temperature,
-            temperaturePriority,
-            polutionLevels: pollution,
-            polutionLevelsPriority: pollutionPriority,
-            population,
-            populationPriority,
-            treeCoverage,
-            treeCoveragePriority,
+            temperature: Math.round(temperature),
+            temperaturePriority: Math.round(temperaturePriority),
+            polutionLevels: Math.round(pollution),
+            polutionLevelsPriority: Math.round(pollutionPriority),
+            population: Math.round(population),
+            populationPriority: Math.round(populationPriority),
+            treeCoverage: Math.round(treeCoverage),
+            treeCoveragePriority: Math.round(treeCoveragePriority),
         };
+
 
         console.log(formData);
 
@@ -55,7 +56,7 @@ export function LandingPage({ setResponse }) {
             lng: apiResponse.data.Latitude,
             treeCoverage: apiResponse.data.TreeCoverage,
             population: apiResponse.data.Population,
-            pollution: apiResponse.data.Pollution,
+            pollution: apiResponse.data.Pollution, // Scale down pollution value
             temperature: apiResponse.data.Temperature,
             country: apiResponse.data.Country,
         };
@@ -81,10 +82,10 @@ export function LandingPage({ setResponse }) {
                 <div className="flex flex-wrap justify-center gap-2 py-10 w-full">
                     <FilterComponent
                         title="Temperature"
-                        minLabel="-25C"
-                        maxLabel="20C"
-                        minRange={0}
-                        maxRange={100}
+                        minLabel="-12C"
+                        maxLabel="45C"
+                        minRange={-12}
+                        maxRange={45}
                         initialRange={temperature}
                         onRangeChange={setTemperature}
                         onPriorityChange={setTemperaturePriority}
@@ -93,18 +94,18 @@ export function LandingPage({ setResponse }) {
                         title="Pollution"
                         minLabel="Low"
                         maxLabel="High"
-                        minRange={0}
-                        maxRange={100}
+                        minRange={1.3}
+                        maxRange={133}
                         initialRange={pollution}
                         onRangeChange={setPollution}
                         onPriorityChange={setPollutionPriority}
                     />
                     <FilterComponent
-                        title="Population"
-                        minLabel="500"
-                        maxLabel="1.5 mil"
-                        minRange={0}
-                        maxRange={100}
+                        title="Population Density"
+                        minLabel="0.1"
+                        maxLabel="8987 mil"
+                        minRange={0.1}
+                        maxRange={8987}
                         initialRange={population}
                         onRangeChange={setPopulation}
                         onPriorityChange={setPopulationPriority}
@@ -113,8 +114,8 @@ export function LandingPage({ setResponse }) {
                         title="Tree Coverage"
                         minLabel="0 %"
                         maxLabel="100 %"
-                        minRange={0}
-                        maxRange={100}
+                        minRange={1}
+                        maxRange={97}
                         initialRange={treeCoverage}
                         onRangeChange={setTreeCoverage}
                         onPriorityChange={setTreeCoveragePriority}

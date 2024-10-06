@@ -83,8 +83,8 @@ export function LandingPage({ setResponse }) {
                         title="Temperature"
                         minLabel="-25C"
                         maxLabel="20C"
-                        minRange={0}
-                        maxRange={100}
+                        minRange={-25}
+                        maxRange={25}
                         initialRange={temperature}
                         onRangeChange={setTemperature}
                         onPriorityChange={setTemperaturePriority}
@@ -100,7 +100,7 @@ export function LandingPage({ setResponse }) {
                         onPriorityChange={setPollutionPriority}
                     />
                     <FilterComponent
-                        title="Population"
+                        title="Population Density"
                         minLabel="500"
                         maxLabel="1.5 mil"
                         minRange={0}

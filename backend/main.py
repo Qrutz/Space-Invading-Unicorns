@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import requests
+<<<<<<< Updated upstream
+=======
+from urllib.request import urlopen
+import json
+>>>>>>> Stashed changes
 
 app = FastAPI()
 
@@ -27,6 +32,15 @@ def getUserParametersAndCalculate(userInput: UserInput):
 
     print(userInput)
 
+<<<<<<< Updated upstream
+=======
+@app.post("/calculate")
+def getUserParametersAndCalculate(userInput: UserInput):
+    # Do ML model algo thingy
+
+    print(userInput)
+
+>>>>>>> Stashed changes
     userAnswer = getplace(57.721035, 12.939819)
     if userAnswer:
         town, country = userAnswer
@@ -36,7 +50,65 @@ def getUserParametersAndCalculate(userInput: UserInput):
         }
     else:
         return {"error": "Location not found"}
+    
+def getplace3(lat, lon):
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&sensor=false&key=AIzaSyCERxB4t2EdfYMF_U2h-NcAd40BoP4NTpI"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
 
+        if not data.get('results'):
+            print(f"No results found for coordinates: {lat}, {lon}")
+            return None
+
+        components = data['results'][0]['address_components']
+        country = town = None
+
+        for c in components:
+            if "country" in c['types']:
+                country = c['long_name']
+            if "locality" in c['types'] or "postal_town" in c['types']:
+                town = c['long_name']
+
+        return town, country
+
+    except requests.RequestException as e:
+        print(f"Request failed: {e}")
+    except (IndexError, KeyError) as e:
+        print(f"Error extracting data: {e}")
+
+    return None
+
+def getplace2(lat, lon):
+
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&sensor=false&key=AIzaSyCERxB4t2EdfYMF_U2h-NcAd40BoP4NTpI"
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        data = response.json()
+
+        if not data.get('results'):
+            print(f"No results found for coordinates: {lat}, {lon}")
+            return None
+
+        components = data['results'][0]['address_components']
+        country = town = None
+
+        for c in components:
+            if "country" in c['types']:
+                country = c['long_name']
+            if "locality" in c['types'] or "postal_town" in c['types']:
+                town = c['long_name']
+
+        return town, country
+
+    except requests.RequestException as e:
+        print(f"Request failed: {e}")
+    except (IndexError, KeyError) as e:
+        print(f"Error extracting data: {e}")
+
+    return None
 
 def getplace(lat, lon):
     url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&sensor=false&key=AIzaSyCERxB4t2EdfYMF_U2h-NcAd40BoP4NTpI"
@@ -69,4 +141,8 @@ def getplace(lat, lon):
     except (IndexError, KeyError) as e:
         print(f"Error extracting data: {e}")
 
+<<<<<<< Updated upstream
     return None
+=======
+    return None
+>>>>>>> Stashed changes

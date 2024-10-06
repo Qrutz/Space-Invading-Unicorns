@@ -23,21 +23,18 @@ def read_root():
 @app.post("/calculate")
 def getUserParametersAndCalculate(userInput: UserInput):
     # Do ML model algo thingy
+    longitude, latitude = 57.721035, 12.939819
 
+    # Request to Google Maps API to get country and city
     print(userInput)
-
-@app.post("/calculate")
-def getUserParametersAndCalculate(userInput: UserInput):
-    # Do ML model algo thingy
-
-    print(userInput)
-
     userAnswer = getplace(57.721035, 12.939819)
     if userAnswer:
         town, country = userAnswer
         return {
             "City": town,
             "Country": country,
+            "Latitude": latitude,
+            "Longitude": longitude
         }
     else:
         return {"error": "Location not found"}

@@ -1,0 +1,11 @@
+name: data               # Name of your environment
+channels:
+  - defaults               # You can add other channels like 'conda-forge'
+dependencies:
+  - python=3.9             # Specify Python version (or other packages)
+  - numpy                  # Add your dependencies
+  - pandas
+  - matplotlib
+  - rasterio
+  - pyproj
+  - pathlib

@@ -28,7 +28,7 @@ def getUserParametersAndCalculate(userInput: UserInput):
 
     # Request to Google Maps API to get country and city
     print(userInput)
-    userAnswer = getplace(57.721035, 12.939819)
+    userAnswer = getplace(longitude, latitude)
     if userAnswer:
         town, country = userAnswer
         return {

@@ -22,6 +22,18 @@ npm i
 
 Make sure you have Python installed before the next step!
 
+### Data Preprocessing
+
+Install the data environment under `backend\data.yml`.
+
+We utilized datasets provided by NASA (details in the sources below) and standardized them using the script located at `backend/StandardizeDatasets.py`.
+
+The standardized data is available for download in this [Google Drive folder](https://drive.google.com/drive/folders/1ZkH_-cV05l2T6mjZIi0Ftq88p8QZ_NlC), under the `standardizeddata` subfolder. To proceed, copy the data to the following repository path: `backend/data/findnicestcity/standardized_data/`.
+
+Subsequently, the standardized data was further refined into a concise dataset using the preprocessing algorithm in `backend/data/datapreprocessing.py`.
+
+
+
 ### Running the Backend
 To run the backend, run the following commands and leave the terminal running:
 ```

@@ -56,10 +56,11 @@ export function LandingPage({ setResponse }) {
             treeCoverage: apiResponse.data.TreeCoverage,
             population: apiResponse.data.Population,
             pollution: apiResponse.data.Pollution,
-            temperature: apiResponse.data.Temperature
+            temperature: apiResponse.data.Temperature,
+            country: apiResponse.data.Country,
         };
-        const country = apiResponse.data.Country;
-        setResponse({ country, coordinates });
+
+        setResponse({ coordinates });
 
         setLoading(false);
     };

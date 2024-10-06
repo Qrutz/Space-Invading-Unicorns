@@ -84,11 +84,12 @@ const GlobeComponent = ({ coordinates }) => {
                                 </h2>
 
                                 <div className="space-y-2 text-lg">
-                                    <p>Average temperature: {countryDetails.avgTemperature}c</p>
-                                    <p>Average pollution level: {countryDetails.avgPollution}</p>
-                                    <p>Population: {countryDetails.population}</p>
-                                    <p>Tree coverage: {countryDetails.treeCoverage}%</p>
+                                    <p>Average temperature: <span className='font-bold text-xl'>{Math.floor(countryDetails.avgTemperature)}c</span></p>
+                                    <p>Average pollution level: <span className='font-bold text-xl'>{countryDetails.avgPollution}</span></p>
+                                    <p>Population: <span className='font-bold text-xl'>{countryDetails.population}</span></p>
+                                    <p>Tree coverage: <span className='font-bold text-xl'>{countryDetails.treeCoverage}%</span></p>
                                 </div>
+
 
                                 <p className="mt-6 text-lg font-semibold">
                                     Explore the map to see the visualisation of the filters!

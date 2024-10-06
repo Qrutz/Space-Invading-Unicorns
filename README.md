@@ -26,7 +26,7 @@ Make sure you have Python installed before the next step!
 
 Install the data environment under `backend\data.yml`.
 
-We utilized datasets provided by NASA (details in the sources below) and standardized them using the script located at `backend/StandardizeDatasets.py`.
+We utilized datasets provided by NASA (details in the [sources below](#data-sources)) and standardized them using the script located at `backend/StandardizeDatasets.py`.
 
 The standardized data is available for download in this [Google Drive folder](https://drive.google.com/drive/folders/1ZkH_-cV05l2T6mjZIi0Ftq88p8QZ_NlC), under the `standardizeddata` subfolder. To proceed, copy the data to the following repository path: `backend/data/findnicestcity/standardized_data/`.
 

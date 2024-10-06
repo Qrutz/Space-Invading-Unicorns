@@ -24,13 +24,7 @@ def read_root():
 @app.post("/calculate")
 def getUserParametersAndCalculate(userInput: UserInput):
     # Do ML model algo thingy
-
-    # Hardcoded data for example
     longitude, latitude = 57.721035, 12.939819
-    treeCoverage = 64
-    population = 112345
-    pollution = 15
-    temperature = 18
 
     # Request to Google Maps API to get country and city
     print(userInput)
@@ -42,14 +36,11 @@ def getUserParametersAndCalculate(userInput: UserInput):
             "Country": country,
             "Latitude": latitude,
             "Longitude": longitude,
-            "TreeCoverage": treeCoverage,
-            "Population": population,
-            "Temperature": temperature,
-            "Pollution": pollution
         }
     else:
         return {"error": "Location not found"}
-    
+
+
 def getplace3(lat, lon):
     url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&sensor=false&key=AIzaSyCERxB4t2EdfYMF_U2h-NcAd40BoP4NTpI"
     try:
@@ -57,18 +48,18 @@ def getplace3(lat, lon):
         response.raise_for_status()
         data = response.json()
 
-        if not data.get('results'):
+        if not data.get("results"):
             print(f"No results found for coordinates: {lat}, {lon}")
             return None
 
-        components = data['results'][0]['address_components']
+        components = data["results"][0]["address_components"]
         country = town = None
 
         for c in components:
-            if "country" in c['types']:
-                country = c['long_name']
-            if "locality" in c['types'] or "postal_town" in c['types']:
-                town = c['long_name']
+            if "country" in c["types"]:
+                country = c["long_name"]
+            if "locality" in c["types"] or "postal_town" in c["types"]:
+                town = c["long_name"]
 
         return town, country
 
@@ -78,6 +69,7 @@ def getplace3(lat, lon):
         print(f"Error extracting data: {e}")
 
     return None
+
 
 def getplace2(lat, lon):
 
@@ -87,18 +79,18 @@ def getplace2(lat, lon):
         response.raise_for_status()
         data = response.json()
 
-        if not data.get('results'):
+        if not data.get("results"):
             print(f"No results found for coordinates: {lat}, {lon}")
             return None
 
-        components = data['results'][0]['address_components']
+        components = data["results"][0]["address_components"]
         country = town = None
 
         for c in components:
-            if "country" in c['types']:
-                country = c['long_name']
-            if "locality" in c['types'] or "postal_town" in c['types']:
-                town = c['long_name']
+            if "country" in c["types"]:
+                country = c["long_name"]
+            if "locality" in c["types"] or "postal_town" in c["types"]:
+                town = c["long_name"]
 
         return town, country
 
@@ -108,6 +100,7 @@ def getplace2(lat, lon):
         print(f"Error extracting data: {e}")
 
     return None
+
 
 def getplace(lat, lon):
     url = f"https://maps.googleapis.com/maps/api/geocode/json?latlng={lat},{lon}&sensor=false&key=AIzaSyCERxB4t2EdfYMF_U2h-NcAd40BoP4NTpI"

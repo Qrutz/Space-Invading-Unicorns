@@ -7,6 +7,8 @@ interface FilterComponentProps {
     minRange: number;
     maxRange: number;
     initialRange: number;
+    onRangeChange: (newValue: number) => void;
+    onPriorityChange: (newPriority: number) => void;
 }
 
 export function FilterComponent({
@@ -16,27 +18,30 @@ export function FilterComponent({
     minRange,
     maxRange,
     initialRange,
+    onRangeChange,
+    onPriorityChange,
 }: FilterComponentProps) {
     const [priority, setPriority] = useState(1);
     const [value, setValue] = useState(initialRange);
     const [priorityInfo, showPriorityInfo] = useState(false);
 
-    const handlePriorityClick = (value) => {
+    const handlePriorityClick = (value: number) => {
         setPriority(value);
+        onPriorityChange(value); // Update the parent with new priority
     };
 
-    const handleSliderChange = (e) => {
-        setValue(e.target.value);
+    const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = Number(e.target.value);
+        setValue(newValue);
+        onRangeChange(newValue); // Update the parent with new slider value
     };
 
     return (
         <div className="flex flex-col items-center justify-center space-y-4 p-4 sm:p-6 rounded-3xl bg-white shadow-lg w-full sm:w-80 relative font-Fred">
-            {/* Header */}
             <div className="bg-purple-700 text-white text-sm sm:text-lg font-semi px-6 sm:px-8 py-1.5 sm:py-2 rounded-full absolute -top-6 sm:-top-8">
                 {title.toUpperCase()}
             </div>
 
-            {/* Slider */}
             <div className="flex flex-col items-center w-full space-y-2">
                 <input
                     type="range"
@@ -52,7 +57,6 @@ export function FilterComponent({
                 </div>
             </div>
 
-            {/* Priority */}
             <div className="flex flex-col items-center space-y-2">
                 <p className="text-xs sm:text-sm text-gray-700">
                     Priority
@@ -63,7 +67,6 @@ export function FilterComponent({
                     >i</button>
                 </p>
 
-                {/* Conditional overlay box */}
                 {priorityInfo && (
                     <div className="absolute top-0 left-8 p-3 w-42 bg-purple-200 text-gray-700 text-xs rounded shadow-lg z-10">
                         Choose how important this filter is for you.<br />

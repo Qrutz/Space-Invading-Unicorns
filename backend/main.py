@@ -4,7 +4,6 @@ from pydantic import BaseModel
 import pandas as pd
 import requests
 
-## TODO: FIX THIS
 from data.findnicestcity.utils import bestLocation
 
 app = FastAPI()
@@ -28,11 +27,19 @@ def read_root():
 
 @app.post("/calculate")
 def getUserParametersAndCalculate(userInput: UserInput):
+
+    print(userInput)
     # Do ML model algo thingy
-    userInput = [userInput.temperature, userInput.treeCoverage, userInput.population, userInput.polutionLevels]
+    userData = [userInput.temperature, userInput.treeCoverage, userInput.population, userInput.polutionLevels]
     userPriorities = [userInput.temperaturePriority, userInput.treeCoveragePriority, userInput.populationPriority, userInput.polutionLevelsPriority]
 
+
+    # print(userData)
+    # print(userPriorities)
+
     merged_data = pd.read_csv('data/findnicestcity/data.csv')
+
+    print(merged_data.head())
     # Combining all data into a single array (N+2 x M)
     vegetation_density = merged_data['Vegetation'].to_numpy()
     population_density = merged_data['PopulationDensity'].to_numpy()
@@ -44,14 +51,12 @@ def getUserParametersAndCalculate(userInput: UserInput):
 
     data = np.array([temperature, vegetation_density, population_density, air_pollution, latitude, longitude])
 
-    bestLocation(userPriorities, userInput, data)
+    foundCoordinates, foundFeatures = bestLocation(userPriorities, userData, data)
 
     # Hardcoded data for example
-    longitude, latitude = 57.721035, 12.939819
-    treeCoverage = 64
-    population = 112345
-    pollution = 15
-    temperature = 18
+    longitude, latitude = foundCoordinates
+    temperature, treeCoverage, population, pollution = foundFeatures
+
 
     # Request to Google Maps API to get country and city
     print(userInput)

@@ -58,9 +58,9 @@ const GlobeComponent = ({ coordinates }) => {
                         </div>
                     ) : (
                         // Leaflet Map appears after zoom-in
-                        <div className="flex justify-center items-center h-screen bg-purple-600 p-10 rounded-lg space-x-8">
+                        <div className="flex justify-start items-center h-screen bg-purple-600 p-10 rounded-lg space-x-20">
                             {/* Circular map container */}
-                            <div className="relative w-96 h-96 rounded-full overflow-hidden shadow-xl border-4 border-blue-400">
+                            <div className="relative w-[50vw] h-[75vh] rounded-full overflow-hidden shadow-xl border-4 border-white">
                                 {/* Leaflet Map with a dark theme */}
                                 <MapContainer
                                     center={[coords.lat, coords.lng]}
@@ -75,13 +75,14 @@ const GlobeComponent = ({ coordinates }) => {
                             </div>
 
                             {/* Right side content */}
-                            <div className="text-white space-y-4 max-w-md">
-                                <h2 className="text-2xl font-bold font-pixel text-center mb-4">
+                            <div className="text-white space-y-8 max-w-md">
+                                <h2 className="text-3xl font-bold font-pixel text-left mb-8">
                                     The most suitable country according to your preferences is {countryDetails.country}!
                                 </h2>
 
                                 <div className="space-y-2 text-lg">
-                                    <p>Average temperature: {countryDetails.avgTemperature}</p>
+                                    <p>Average summer temperature: {countryDetails.avgTemperature}</p>
+                                    <p>Average winter temperature: {countryDetails.avgTemperature}</p>
                                     <p>Average pollution level: {countryDetails.avgPollution}</p>
                                     <p>Population density: {countryDetails.population}</p>
                                     <p>Tree coverage: {countryDetails.treeCoverage}</p>
@@ -92,7 +93,7 @@ const GlobeComponent = ({ coordinates }) => {
                                 </p>
 
                                 {/* Try Again button */}
-                                <div className="flex justify-center mt-6">
+                                <div className="flex justify-left mt-6">
                                     <button
                                         onClick={refreshPage} // Calls refreshPage when clicked
                                         className="bg-white text-purple-600 py-2 px-6 rounded-full font-bold text-lg hover:bg-gray-200 transition"

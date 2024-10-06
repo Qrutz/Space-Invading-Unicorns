@@ -100,7 +100,7 @@ export function LandingPage({ setResponse }) {
                         onPriorityChange={setPollutionPriority}
                     />
                     <FilterComponent
-                        title="Population density"
+                        title="Population"
                         minLabel="500"
                         maxLabel="1.5 mil"
                         minRange={0}

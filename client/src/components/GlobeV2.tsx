@@ -8,11 +8,11 @@ const GlobeComponent = ({ coordinates }) => {
     const [showLeafletMap, setShowLeafletMap] = useState(false); // To switch to Leaflet map
     const [coords, setCoords] = useState({ lat: 51.1657, lng: 10.4515 }); // Default to Germany coordinates
     const countryDetails = {
-        country: "Sweden", // Hardcoded country name
-        avgTemperature: "-5°C to 25°C", // Hardcoded average temperature
-        avgPollution: "Low", // Hardcoded average pollution level
-        population: "10 million", // Hardcoded population
-        treeCoverage: "69%" // Hardcoded tree coverage
+        country: coordinates.country, // Hardcoded country name
+        avgTemperature: coordinates.temperature, // Hardcoded average temperature
+        avgPollution: coordinates.pollution, // Hardcoded average pollution level
+        population: coordinates.population, // Hardcoded population
+        treeCoverage: coordinates.treeCoverage // Hardcoded tree coverage
     };
 
     // Effect to trigger zoom when coordinates change
@@ -87,7 +87,7 @@ const GlobeComponent = ({ coordinates }) => {
                                     <p>Average summer temperature: {countryDetails.avgTemperature}</p>
                                     <p>Average winter temperature: {countryDetails.avgTemperature}</p>
                                     <p>Average pollution level: {countryDetails.avgPollution}</p>
-                                    <p>Population density: {countryDetails.population}</p>
+                                    <p>Population: {countryDetails.population}</p>
                                     <p>Tree coverage: {countryDetails.treeCoverage}</p>
                                 </div>
 

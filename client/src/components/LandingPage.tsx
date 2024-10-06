@@ -53,6 +53,10 @@ export function LandingPage({ setResponse }) {
         const coordinates = {
             lat: apiResponse.data.Longitude,
             lng: apiResponse.data.Latitude,
+            treeCoverage: apiResponse.data.TreeCoverage,
+            population: apiResponse.data.Population,
+            pollution: apiResponse.data.Pollution,
+            temperature: apiResponse.data.Temperature
         };
         const country = apiResponse.data.Country;
         setResponse({ country, coordinates });

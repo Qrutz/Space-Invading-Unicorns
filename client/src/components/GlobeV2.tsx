@@ -84,8 +84,7 @@ const GlobeComponent = ({ coordinates }) => {
                                 </h2>
 
                                 <div className="space-y-2 text-lg">
-                                    <p>Average summer temperature: {countryDetails.avgTemperature}</p>
-                                    <p>Average winter temperature: {countryDetails.avgTemperature}</p>
+                                    <p>Average temperature: {countryDetails.avgTemperature}</p>
                                     <p>Average pollution level: {countryDetails.avgPollution}</p>
                                     <p>Population: {countryDetails.population}</p>
                                     <p>Tree coverage: {countryDetails.treeCoverage}</p>

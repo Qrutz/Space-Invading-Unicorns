@@ -1,6 +1,11 @@
+import numpy as np
 from fastapi import FastAPI
 from pydantic import BaseModel
+import pandas as pd
 import requests
+
+## TODO: FIX THIS
+from data.findnicestcity.utils import bestLocation
 
 app = FastAPI()
 
@@ -24,6 +29,22 @@ def read_root():
 @app.post("/calculate")
 def getUserParametersAndCalculate(userInput: UserInput):
     # Do ML model algo thingy
+    userInput = [userInput.temperature, userInput.treeCoverage, userInput.population, userInput.polutionLevels]
+    userPriorities = [userInput.temperaturePriority, userInput.treeCoveragePriority, userInput.populationPriority, userInput.polutionLevelsPriority]
+
+    merged_data = pd.read_csv('data/findnicestcity/data.csv')
+    # Combining all data into a single array (N+2 x M)
+    vegetation_density = merged_data['Vegetation'].to_numpy()
+    population_density = merged_data['PopulationDensity'].to_numpy()
+    temperature = merged_data['Temperature'].to_numpy()
+    air_pollution = merged_data['Pollution'].to_numpy()
+    # Coordinates for each location (latitude and longitude)
+    latitude = merged_data['latitude'].to_numpy()
+    longitude = merged_data['longitude'].to_numpy()
+
+    data = np.array([temperature, vegetation_density, population_density, air_pollution, latitude, longitude])
+
+    bestLocation(userPriorities, userInput, data)
 
     # Hardcoded data for example
     longitude, latitude = 57.721035, 12.939819
